@@ -85,7 +85,7 @@ function invoice_get_data($start, $end, $projects, $filter_cleared, $short_form)
     $result_arr = array();
     $timeSheetEntries_index = 0;
     $expenses_index = 0;
-    $keys = array('type', 'desc', 'hour', 'fduration', 'amount', 'date', 'description', 'rate', 'comment', 'username', 'useralias', 'location');
+    $keys = array('type', 'desc', 'project', 'hour', 'fduration', 'amount', 'date', 'description', 'rate', 'comment', 'username', 'useralias', 'location');
     while ($timeSheetEntries_index < count($timeSheetEntries) && $expenses_index < count($expenses)) {
         $arr = array();
         foreach ($keys as $key)
@@ -96,6 +96,7 @@ function invoice_get_data($start, $end, $projects, $filter_cleared, $short_form)
                 // active recordings will be omitted
                 $arr['type'] = 'timeSheet';
                 $arr['location'] = $timeSheetEntries[$timeSheetEntries_index]['location'];
+                $arr['project'] = $timeSheetEntries[$timeSheetEntries_index]['projectName'];
                 $arr['desc'] = $timeSheetEntries[$timeSheetEntries_index]['activityName'];
                 $arr['hour'] = $timeSheetEntries[$timeSheetEntries_index]['duration'] / 3600;
                 $arr['fDuration'] = $timeSheetEntries[$timeSheetEntries_index]['formattedDuration'];
@@ -144,6 +145,7 @@ function invoice_get_data($start, $end, $projects, $filter_cleared, $short_form)
 
             $arr['type'] = 'timeSheet';
             $arr['location'] = $timeSheetEntries[$timeSheetEntries_index]['location'];
+            $arr['project'] = $timeSheetEntries[$timeSheetEntries_index]['projectName'];
             $arr['desc'] = $timeSheetEntries[$timeSheetEntries_index]['activityName'];
             $arr['hour'] = $timeSheetEntries[$timeSheetEntries_index]['duration'] / 3600;
             $arr['fDuration'] = $timeSheetEntries[$timeSheetEntries_index]['formattedDuration'];
